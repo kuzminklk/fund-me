@@ -2,8 +2,14 @@
 ### Description
 Funding smart-contract
 
+### Purpose
+Part of Foundry Fundamentals course from Cyfrin Updraft and as submodule in [appropriate repository](https://github.com/kuzminklk/cyfrin-updraft)  
+
+
+### Status
+Finished, tested locally
+
+
 ### Set Up
 Install foundry dependences:
-```forge install foundry-rs/forge-std --no-git```
-```forge install smartcontractkit/chainlink-brownie-contracts --no-git```
-```forge install cyfrin/foundry-devops --no-git```
+```forge install```
