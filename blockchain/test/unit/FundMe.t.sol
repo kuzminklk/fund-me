@@ -1,17 +1,13 @@
-
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.18;
 
-import { Test } from "forge-std/Test.sol";
+import {Test} from "forge-std/Test.sol";
 
-import { FundMe } from "../../src/FundMe.sol";
-import { Deploy } from "../../script/Deploy.s.sol";
-
+import {FundMe} from "../../src/FundMe.sol";
+import {Deploy} from "../../script/Deploy.s.sol";
 
 contract FundMeTest is Test {
-
 	FundMe fundMe;
 
 	uint256 constant TEST_SEND_VALUE = 0.1 ether;
@@ -24,13 +20,11 @@ contract FundMeTest is Test {
 		vm.deal(USER, TEST_STARTING_BALANCE);
 	}
 
-
 	// Test contract construction ( constructor() )
 
 	function testOwnerIsMessageSender() public view {
 		assertEq(fundMe.OWNER(), msg.sender);
 	}
-
 
 	// Test funding functionality ( fund() )
 
@@ -52,7 +46,6 @@ contract FundMeTest is Test {
 		address funder = fundMe.sFunders(0);
 		assertEq(funder, USER);
 	}
-
 
 	// Test withdrawing functionality ( withdraw() )
 
@@ -79,13 +72,12 @@ contract FundMeTest is Test {
 	}
 
 	function testWithdrawWithMultipleFunders() public {
-
 		// Arrange
 		uint160 numberOfFunders = 10; // Will generate addresses from this
 		uint160 staringFunderIndex = 1;
-		for(uint160 i = staringFunderIndex; i < numberOfFunders; i++) {
+		for (uint160 i = staringFunderIndex; i < numberOfFunders; i++) {
 			hoax(address(i), TEST_SEND_VALUE);
-			fundMe.fund{value:TEST_SEND_VALUE}();
+			fundMe.fund{value: TEST_SEND_VALUE}();
 		}
 
 		uint256 startingOwnerBalance = fundMe.OWNER().balance;
@@ -102,11 +94,9 @@ contract FundMeTest is Test {
 		assertEq(startingOwnerBalance + startingFundMeBalance, endingOwnerBalance);
 	}
 
-
 	modifier funded() {
 		vm.prank(USER);
 		fundMe.fund{value: TEST_SEND_VALUE}();
 		_;
 	}
-
 }

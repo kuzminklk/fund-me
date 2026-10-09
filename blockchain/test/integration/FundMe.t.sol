@@ -1,17 +1,13 @@
-
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.18;
 
-import { Test } from "forge-std/Test.sol";
+import {Test} from "forge-std/Test.sol";
 
-import { FundMe } from "../../src/FundMe.sol";
-import { Deploy } from "../../script/Deploy.s.sol";
-
+import {FundMe} from "../../src/FundMe.sol";
+import {Deploy} from "../../script/Deploy.s.sol";
 
 contract FundMeTestIntegration is Test {
-
 	FundMe fundMe;
 
 	uint256 constant TEST_SEND_VALUE = 0.1 ether;

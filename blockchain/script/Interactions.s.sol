@@ -1,17 +1,13 @@
-
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.18;
 
-import { Script } from "forge-std/Script.sol";
-import { DevOpsTools } from "../lib/foundry-devops/src/DevOpsTools.sol";
+import {Script} from "forge-std/Script.sol";
+import {DevOpsTools} from "../lib/foundry-devops/src/DevOpsTools.sol";
 
-import { FundMe } from "../src/FundMe.sol";
-
+import {FundMe} from "../src/FundMe.sol";
 
 contract Fund is Script {
-		
 	uint256 constant TEST_SEND_VALUE = 0.1 ether;
 
 	function fund(address fundMe) public {
@@ -25,11 +21,9 @@ contract Fund is Script {
 		fund(mostRecentlyDeployed);
 		vm.stopBroadcast();
 	}
-
 }
 
 contract Withdraw is Script {
-				
 	uint256 constant TEST_SEND_VALUE = 0.1 ether;
 
 	function withdraw(address fundMe) public {
@@ -43,5 +37,4 @@ contract Withdraw is Script {
 		withdraw(mostRecentlyDeployed);
 		vm.stopBroadcast();
 	}
-
 }
